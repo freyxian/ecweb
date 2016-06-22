@@ -27,9 +27,9 @@
 
 </table>
 
-    <input type="submit" name="verifyEcard" value="验证密码"/>
+    <%-- input type="submit" name="verifyEcard" value="验证密码"/--%>
+        <button class="btn btn-primary" type="submit" name="verifyEcard">验证密码</button>
 
-        <input type="submit" name="cancell" value="取消"/>
 </form:form>
 </body>
 </html>

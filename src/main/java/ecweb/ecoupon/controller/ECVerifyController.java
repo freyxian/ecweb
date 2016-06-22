@@ -107,7 +107,7 @@ public class ECVerifyController {
 
 
 		}else if(ec.getState()==1){//已经使用，仅显示状态
-			message="此购物券相关订单尚在处理中，请等待24小时后查询！";
+			message="此购物券相关订单尚在处理中,处理单编号："+ec.getProcessNumber()+"，请等待24小时后查询！"; //加ProcessNumber
 			mv.addObject("message",message);
 			mv.setViewName("orderconfirmrf");
 		}else if(ec.getState()==2){

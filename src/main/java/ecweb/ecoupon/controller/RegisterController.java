@@ -117,8 +117,10 @@ public class RegisterController {
 			mv.addObject("registerForm", myform);
 			return mv;
 		}
-			
-		if(ec.getCell()!=null){ //at initail state, cell is empty, so as passwd
+		
+		String cell=ec.getCell();
+		if(cell!=null&&cell.length()>0){ //at initail state, cell is empty, so as passwd
+			logger.debug("cell="+ec.getCell());
 			if(!dao.getPasswdVerify(myform.getEccode(), myform.getOldpasswd())){
 			message="输入的购物券和密码不匹配。请重试！";
 			mv.addObject("message",message);

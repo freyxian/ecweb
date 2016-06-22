@@ -59,7 +59,7 @@ public Ecoupon getECbyCode(String code){
 }
 
 public boolean getPasswdVerify(String eccode, String passwd){
-	String sql="SELECT COUNT(*) FROM ecoupon WHERE ec_code =? and password = SHA(?)";
+	String sql="SELECT COUNT(*) FROM ecoupon WHERE ec_code =? and passwd = SHA(?)";
 	Integer result = template.queryForObject(sql,Integer.class,eccode,passwd);
 	if (result>0) return true;
 	else return false;
@@ -118,11 +118,7 @@ public String  saveOrder(GoodsForm form){
 	String pn=null;
 	int result=0;
 	String sql;
-	
-	sql="update ecoupon set state=1 where ec_code=? and state=0";
-	result=this.template.update(sql,form.getEccode());
-	if(result!=1) throw new RuntimeException();
-	
+
 	sql="SELECT nextval('ProcessNumber') as next_sequence";
 	Integer sequence = template.queryForObject(sql,Integer.class);
 	pn=sequence.toString();
@@ -131,6 +127,10 @@ public String  saveOrder(GoodsForm form){
 		for(int j=0;j<i;j++) pn="0"+pn;
 	}
 	pn="D"+pn;
+	
+	sql="update ecoupon set state=1, ProcessNumber=? where ec_code=? and state=0";
+	result=this.template.update(sql,pn,form.getEccode());
+	if(result!=1) throw new RuntimeException();
 	
 	sql="insert into orders(ec_code,name,address,postcode,ProcessNumber,state,contact) values(?,?,?,?,?,?,?)";
 	result=this.template.update(sql,form.getEccode(),form.getName(),form.getAddress(),form.getPostcode(),
@@ -146,11 +146,6 @@ public String  saveCashbckOrder(CashbackForm form){
 	int result=0;
 	String sql;
 	
-	sql="update ecoupon set state=1 where ec_code=? and state=0";
-	result=this.template.update(sql,form.getEccode());
-	logger.debug("update ecoupon set state=1; result="+result);
-	if(result!=1) throw new RuntimeException();
-	
 	sql="SELECT nextval('ProcessNumber') as next_sequence";
 	Integer sequence = template.queryForObject(sql,Integer.class);
 	pn=sequence.toString();
@@ -159,6 +154,11 @@ public String  saveCashbckOrder(CashbackForm form){
 		for(int j=0;j<i;j++) pn="0"+pn;
 	}
 	pn="C"+pn;
+	
+	sql="update ecoupon set state=1,ProcessNumber=? where ec_code=? and state=0";
+	result=this.template.update(sql,pn,form.getEccode());
+	logger.debug("update ecoupon set state=1; result="+result);
+	if(result!=1) throw new RuntimeException();
 	
 	sql="insert into cashback(ec_code,name,account,number,ProcessNumber,state) values(?,?,?,?,?,?)";
 	result=this.template.update(sql,form.getEccode(),form.getName(),form.getAccount(),form.getCashback(),pn,0);

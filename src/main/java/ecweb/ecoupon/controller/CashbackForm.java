@@ -28,16 +28,7 @@ public class CashbackForm {
 	@NotNull 
 	@Size(min = 2,max=50, message = "姓名，至少2个字符")
 	private String name;
-	@NotNull 
-	@Size(min = 2,max=50, message = "联系方式，至少2个字符")
-	private String contact;
-	
-	public String getContact() {
-		return contact;
-	}
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
+
 	public String getEccode() {
 		return eccode;
 	}

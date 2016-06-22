@@ -33,10 +33,13 @@
 <td><form:errors path="newpasswd"/></td></tr>
 
 </table>
-  <input type="submit" name="sendpwtocell" value="发送手机密码"/>
-    <input type="submit" name="verifyPWcell" value="验证密码"/>
-      <input type="submit" name="resetPW" value="密码重设"/>
-        <input type="submit" name="cancell" value="取消"/>
+  <%-- >input type="submit" name="sendpwtocell" value="发送手机密码"/--%>
+     <button class="btn btn-primary" type="submit" name="sendpwtocell">发送手机密码</button>
+    <%--input type="submit" name="verifyPWcell" value="验证密码并注册"/--%>
+        <button class="btn btn-primary" type="submit" name="verifyPWcell">验证密码并注册</button>
+      <%--input type="submit" name="resetPW" value="密码重设"/--%>
+          <button class="btn btn-primary" type="submit" name="resetPW">密码重设</button>
+
 </form:form>
 </body>
 </html>
