@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6-Apr-2016 9:59:14 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="CigouDAO.cigoudb.ShopncOrderAddress" table="shopnc_order_address" catalog="cigou" optimistic-lock="version">
+        <id name="orderId" type="int">
+            <column name="order_id" />
+            <generator class="foreign">
+                <param name="property">shopncOrder</param>
+            </generator>
+        </id>
+        <one-to-one name="shopncOrder" class="CigouDAO.cigoudb.ShopncOrder" constrained="true"></one-to-one>
+        <property name="trueName" type="string">
+            <column name="true_name" length="50" not-null="true">
+                <comment>?????</comment>
+            </column>
+        </property>
+        <property name="areaId" type="int">
+            <column name="area_id" not-null="true">
+                <comment>??id</comment>
+            </column>
+        </property>
+        <property name="areaInfo" type="string">
+            <column name="area_info" length="100" not-null="true">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="200" not-null="true">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="zipCode" type="string">
+            <column name="zip_code" length="20" not-null="true">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="telPhone" type="string">
+            <column name="tel_phone" length="20" not-null="true">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="mobPhone" type="string">
+            <column name="mob_phone" length="20" not-null="true">
+                <comment>????</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

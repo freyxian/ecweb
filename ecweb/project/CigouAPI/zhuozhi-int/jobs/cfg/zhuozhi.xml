@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+      "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+
+   <!-- bean id="ZZOrderBatch" class="com.echolab.common.batch.ListProcessBatch" -->
+   <bean id="ZZOrderBatch" class="com.cigouyun.ebiz.edi.zhuozhi.process.OrderListProcessBatch" >
+      <!-- property name="listCreator" ref="ZZFileOrderListCreator" / -->
+	  <property name="listCreator" ref="ZZDBOrderListor" />
+	  <property name="elementProcessor" ref="ZhuoZhiElementProcessor" />
+   </bean>
+   
+   <bean id="ZZFileOrderListCreator" class="com.cigouyun.ebiz.edi.zhuozhi.process.ZZFileOrderListCreator">
+   <property name="inputFilePath"> <value>./zz_orders/</value> </property>
+   </bean>
+   
+   <!-- select order_id from wh_order_header oh where +whereClause -->
+   <bean id="ZZDBOrderListor" class="com.cigouyun.ebiz.edi.zhuozhi.process.ZZDBOrderListCreator">
+   <!-- property name="order_id"> <value>00043473809</value> </property -->
+   <property name="dataSource" ref="mysql_home_datasource" />
+   <property name="whereClause" value=" not exists ( select 1 from wh_order_confirm c where c.order_id = oh.order_id )"/>
+   </bean>
+   
+   <bean id="ZhuoZhiElementProcessor" class="com.cigouyun.ebiz.edi.zhuozhi.process.ZhuoZhiOrderProcessor">
+   <property name="ResponseFileDir"> <value>./zz_response/</value> </property>
+   <!-- property name="url"> <value>http://173.35.140.249:8080/api/processOrder</value> </property -->
+   <!-- property name="url"> <value>http://127.0.0.1:8080/api/processOrder</value> </property -->
+   <property name="url"> <value>http://192.168.0.212:9080/api/processOrder</value> </property>
+   <property name="confInsertor" ref="OrderConfInsertor" />
+   <property name="Client" ref="RESTWSClient" />
+   </bean>
+   
+   <bean id="RESTWSClient" class="com.cigouyun.ebiz.edi.zhuozhi.ws.client.RESTClient">
+   <property name="connectTimeout"> <value>10000</value> </property>
+   <!-- property name="ContentType" value="application/json; charset=utf-8"/ -->
+   </bean>
+   
+   <bean id="OrderConfInsertor" class="com.cigouyun.ebiz.edi.zhuozhi.dao.DBInsertWHOrderConf">
+   <property name="dataSource" ref="mysql_home_datasource" />
+   </bean>
+
+   
+   
+   <bean id="mysql_home_datasource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://192.168.0.212:3306/cigou"/>
+        <property name="username" value="stuser"/>
+        <property name="password" value="suntech"/>
+    </bean>
+	
+	<bean id="mysql_remote_datasource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://173.35.140.249/cigou"/>
+        <property name="username" value="stuser"/>
+        <property name="password" value="suntech"/>
+    </bean>
+
+
+</beans>

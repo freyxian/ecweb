@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+      "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+ 
+   <bean id="KSBatch" class="com.echolab.finanlyst.batch.LoadHTMLBatch">
+      <property name="listFile"> <value>cfg/list</value> </property>
+      <property name="URL"> <value>http://finance.yahoo.com/q/ks?s=%%SYMBOL+Key+Statistics</value> </property>
+      <property name="urlReader" ref="urlReader" />
+      <property name="outputPath"> <value>ks/%%SYMBOL.html</value> </property>
+   </bean>
+ 
+   <bean id="urlReader" class="com.echolab.commons.inet.URLReader">
+   </bean>
+
+
+
+
+
+</beans>

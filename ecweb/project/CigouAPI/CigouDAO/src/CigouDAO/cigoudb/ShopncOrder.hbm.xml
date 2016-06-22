@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6-Apr-2016 9:59:14 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="CigouDAO.cigoudb.ShopncOrder" table="shopnc_order" catalog="cigou" optimistic-lock="version">
+        <id name="orderId" type="int">
+            <column name="order_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="orderSn" type="string">
+            <column name="order_sn" length="100" not-null="true">
+                <comment>???????????</comment>
+            </column>
+        </property>
+        <property name="sellerId" type="int">
+            <column name="seller_id" not-null="true">
+                <comment>??id</comment>
+            </column>
+        </property>
+        <property name="storeId" type="int">
+            <column name="store_id" not-null="true">
+                <comment>????id</comment>
+            </column>
+        </property>
+        <property name="storeName" type="string">
+            <column name="store_name" length="50" not-null="true">
+                <comment>??????</comment>
+            </column>
+        </property>
+        <property name="buyerId" type="int">
+            <column name="buyer_id" not-null="true">
+                <comment>??id</comment>
+            </column>
+        </property>
+        <property name="buyerName" type="string">
+            <column name="buyer_name" length="50" not-null="true">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="buyerEmail" type="string">
+            <column name="buyer_email" length="100" not-null="true">
+                <comment>??????</comment>
+            </column>
+        </property>
+        <property name="addTime" type="string">
+            <column name="add_time" length="10" not-null="true">
+                <comment>??????</comment>
+            </column>
+        </property>
+        <property name="orderType" type="boolean">
+            <column name="order_type" not-null="true">
+                <comment>???? 0.?? 1.??</comment>
+            </column>
+        </property>
+        <property name="paymentId" type="int">
+            <column name="payment_id" not-null="true">
+                <comment>????id</comment>
+            </column>
+        </property>
+        <property name="paymentName" type="string">
+            <column name="payment_name" length="50" not-null="true">
+                <comment>??????</comment>
+            </column>
+        </property>
+        <property name="paymentCode" type="string">
+            <column name="payment_code" length="50" not-null="true">
+                <comment>????????</comment>
+            </column>
+        </property>
+        <property name="paymentDirect" type="java.lang.Character">
+            <column name="payment_direct" length="1">
+                <comment>????:1?????,2?????</comment>
+            </column>
+        </property>
+        <property name="outSn" type="string">
+            <column name="out_sn" length="100" not-null="true">
+                <comment>??????????????????????????????</comment>
+            </column>
+        </property>
+        <property name="paymentTime" type="string">
+            <column name="payment_time" length="10">
+                <comment>??(??)??</comment>
+            </column>
+        </property>
+        <property name="payMessage" type="string">
+            <column name="pay_message" length="300">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="shippingTime" type="string">
+            <column name="shipping_time" length="10">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="shippingCode" type="string">
+            <column name="shipping_code" length="50">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="outPaymentCode" type="string">
+            <column name="out_payment_code">
+                <comment>????????????????</comment>
+            </column>
+        </property>
+        <property name="finnshedTime" type="string">
+            <column name="finnshed_time" length="10">
+                <comment>??????</comment>
+            </column>
+        </property>
+        <property name="invoice" type="string">
+            <column name="invoice" length="100">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="goodsAmount" type="big_decimal">
+            <column name="goods_amount" precision="10" not-null="true">
+                <comment>?????</comment>
+            </column>
+        </property>
+        <property name="discount" type="big_decimal">
+            <column name="discount" precision="10">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="orderAmount" type="big_decimal">
+            <column name="order_amount" precision="10" not-null="true">
+                <comment>?????</comment>
+            </column>
+        </property>
+        <property name="shippingFee" type="big_decimal">
+            <column name="shipping_fee" precision="10">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="evaluationStatus" type="java.lang.Boolean">
+            <column name="evaluation_status">
+                <comment>???? 0????1???</comment>
+            </column>
+        </property>
+        <property name="evaluationTime" type="string">
+            <column name="evaluation_time" length="10">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="evalsellerStatus" type="boolean">
+            <column name="evalseller_status" not-null="true">
+                <comment>?????????</comment>
+            </column>
+        </property>
+        <property name="evalsellerTime" type="java.lang.Integer">
+            <column name="evalseller_time">
+                <comment>?????????</comment>
+            </column>
+        </property>
+        <property name="orderMessage" type="string">
+            <column name="order_message" length="300">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="orderState" type="int">
+            <column name="order_state" not-null="true">
+                <comment>?????10(??):???;20:???;30:???;40:???;50:???;60???;</comment>
+            </column>
+        </property>
+        <property name="orderPointscount" type="int">
+            <column name="order_pointscount" not-null="true">
+                <comment>??????</comment>
+            </column>
+        </property>
+        <property name="voucherId" type="java.lang.Integer">
+            <column name="voucher_id">
+                <comment>???id</comment>
+            </column>
+        </property>
+        <property name="voucherPrice" type="java.lang.Integer">
+            <column name="voucher_price">
+                <comment>?????</comment>
+            </column>
+        </property>
+        <property name="voucherCode" type="string">
+            <column name="voucher_code" length="32">
+                <comment>?????</comment>
+            </column>
+        </property>
+        <property name="refundState" type="java.lang.Boolean">
+            <column name="refund_state">
+                <comment>????:0????,1?????,2?????</comment>
+            </column>
+        </property>
+        <property name="returnState" type="java.lang.Boolean">
+            <column name="return_state">
+                <comment>????:0????,1?????,2?????</comment>
+            </column>
+        </property>
+        <property name="refundAmount" type="big_decimal">
+            <column name="refund_amount" precision="10">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="returnNum" type="java.lang.Integer">
+            <column name="return_num">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="groupId" type="java.lang.Integer">
+            <column name="group_id">
+                <comment>????(??????0)</comment>
+            </column>
+        </property>
+        <property name="groupCount" type="int">
+            <column name="group_count" not-null="true">
+                <comment>????</comment>
+            </column>
+        </property>
+        <property name="xianshiId" type="int">
+            <column name="xianshi_id" not-null="true">
+                <comment>??????</comment>
+            </column>
+        </property>
+        <property name="xianshiExplain" type="string">
+            <column name="xianshi_explain" length="100" not-null="true">
+                <comment>??????</comment>
+            </column>
+        </property>
+        <property name="mansongId" type="int">
+            <column name="mansong_id" not-null="true">
+                <comment>?????</comment>
+            </column>
+        </property>
+        <property name="mansongExplain" type="string">
+            <column name="mansong_explain" length="200" not-null="true">
+                <comment>?????</comment>
+            </column>
+        </property>
+        <property name="orderFrom" type="string">
+            <column name="order_from" length="2">
+                <comment>1PC2???</comment>
+            </column>
+        </property>
+        <one-to-one name="shopncOrderAddress" class="CigouDAO.cigoudb.ShopncOrderAddress"></one-to-one>
+        <set name="shopncOrderGoodses" table="shopnc_order_goods" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="order_id" not-null="true">
+                    <comment>??id</comment>
+                </column>
+            </key>
+            <one-to-many class="CigouDAO.cigoudb.ShopncOrderGoods" />
+        </set>
+    </class>
+</hibernate-mapping>
