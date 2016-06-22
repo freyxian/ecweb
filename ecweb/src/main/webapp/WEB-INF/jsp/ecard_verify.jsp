@@ -16,14 +16,14 @@
 </div>
  
 <form:form action="ecard_verify" method="post" modelAttribute="verifyForm">
-<form:errors path="*"  />
+<form:errors path="*" cssClass="error" />
 <table>
 <tr><td>电子劵号码:</td><td><form:input  path="eccode" /></td>
-<td><form:errors path="eccode"/></td></tr>
+<td><form:errors path="eccode" cssClass="error"/></td></tr>
 <tr><td>密码:</td><td><form:input  path="passwd" /></td>
-<td><form:errors path="passwd"/></td></tr>
+<td><form:errors path="passwd" cssClass="error"/></td></tr>
 <tr><td>手机:</td><td><form:input  path="cell" /></td>
-<td><form:errors path="cell"/></td></tr>
+<td><form:errors path="cell" cssClass="error"/></td></tr>
 
 </table>
 <br>

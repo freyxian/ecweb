@@ -25,6 +25,9 @@ display: block;
 	text-align:center;
 		width:710px;
 }
+.error{
+color: red;
+}
 </style>
   </head>
   

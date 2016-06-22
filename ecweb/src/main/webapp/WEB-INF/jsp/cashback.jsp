@@ -18,16 +18,16 @@
 <tr><td>电子劵号码：</td><td><form:input type="label" path="eccode" readonly="true"/></td></tr>
 <tr><td>持劵人手机：</td><td><form:input type="label" path="cell" readonly="true"/></td></tr>
 </table><br>
-<form:errors path="*"  />
+<form:errors path="*" cssClass="error" />
 
 <table>
 <tr><td>商品信息:</td><td><a href="<c:out value="${cashForm.goodsUrl}"/>">
 <c:out value="${cashForm.goodsDesc}"/></a></td></tr>
 <tr><td>商品价格:</td><td><form:input type="label" path="number" readonly="true"/></td></tr>
 <tr><td>收款人姓名:</td><td><form:input  path="name" /></td>
-<td><form:errors path="name"/></td></tr>
+<td><form:errors path="name" cssClass="error"/></td></tr>
 <tr><td>收款人账号:</td><td><form:input  path="account" /></td>
-<td><form:errors path="account"/></td></tr>
+<td><form:errors path="account" cssClass="error"/></td></tr>
 
 <tr><td>退款金额:</td><td><form:input type="label" path="cashback" readonly="true"/></td></tr>
 </table>
