@@ -11,15 +11,19 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <style>
 body { background-color:#eeeeee;}
-page-header {border-style:solid;
+header {border-style:solid;
 	border-width:3px;
-	border-color:black;
+	border-color:Orange;
+	color: ff5733;
 	text-align:center;
-	width:410px;
+	width:710px;
 	}
-footer {font-size:.1.1em;
+footer {
+display: block;
 	font-weight:bold;
 	color:blue
+	text-align:center;
+		width:710px;
 }
 </style>
   </head>
@@ -35,9 +39,8 @@ footer {font-size:.1.1em;
     <sitemesh:write property='body'/>
     
      <footer>
-     <div class="container">
-           <a href="http://www.xmcgo.com" class="btn btn-info pull-center" >返回喜购云</a>
-    </div>
+     <br>
+           <a href="http://www.xmcgo.com" class="btn btn-info" >返回喜购云</a>
     </footer>
     </div>
        

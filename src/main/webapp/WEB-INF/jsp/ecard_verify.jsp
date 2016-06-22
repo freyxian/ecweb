@@ -26,7 +26,7 @@
 <td><form:errors path="cell"/></td></tr>
 
 </table>
-
+<br>
     <%-- input type="submit" name="verifyEcard" value="验证密码"/--%>
         <button class="btn btn-primary" type="submit" name="verifyEcard">验证密码</button>
 

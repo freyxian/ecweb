@@ -31,6 +31,7 @@
 
 <tr><td>退款金额:</td><td><form:input type="label" path="cashback" readonly="true"/></td></tr>
 </table>
+<br>
   <%--  >input type="submit" name="cashback" value="提交"/--%>
     <button class="btn btn-primary" type="submit" name="cashback">提交</button>
 </form:form>
