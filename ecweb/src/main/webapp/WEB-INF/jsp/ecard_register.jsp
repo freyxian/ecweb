@@ -33,6 +33,7 @@
 <td><form:errors path="newpasswd"/></td></tr>
 
 </table>
+<br>
   <%-- >input type="submit" name="sendpwtocell" value="发送手机密码"/--%>
      <button class="btn btn-primary" type="submit" name="sendpwtocell">发送手机密码</button>
     <%--input type="submit" name="verifyPWcell" value="验证密码并注册"/--%>

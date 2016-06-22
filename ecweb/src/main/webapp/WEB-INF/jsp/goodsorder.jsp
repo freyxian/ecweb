@@ -33,6 +33,7 @@
 <c:out value="${goodsform.goodsDesc}"/></a></td></tr>
 <tr><td>商品价格:</td><td><form:input readonly="true" path="number" /></td></tr>
 </table>
+<br>
   <button class="btn btn-primary" type="submit" name="OrderInput">提交</button>
 </form:form>
 </body>
