@@ -12,6 +12,8 @@ import java.security.NoSuchAlgorithmException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ecweb.ecoupon.util.SMSException;
+
 /*
  *  短信发送API(http://api.smsbao.com/):
 http://api.smsbao.com/sms?u=USERNAME&p=PASSWORD&m=PHONE&c=CONTENT
@@ -126,7 +128,7 @@ public class SendSMS {
 		return strret;
 	}
 	
-	public void sendSMS(String Phone_number, String messages){
+	public void sendSMS(String Phone_number, String messages) throws SMSException{
 		StringBuffer httpArg = new StringBuffer();
 		httpArg.append("u=").append(Username).append("&");
 		httpArg.append("p=").append(md5(Password)).append("&");
@@ -136,9 +138,13 @@ public class SendSMS {
 		String result = request(HttpUrl,httpArg.toString());
 		logger.debug("send to "+Phone_number+"SMS return: "+result+"message:"+messages);
 		
-		if(!result.equals("0")){
+		if((result==null)||(!result.equals("0"))){
 			logger.debug("send to "+Phone_number+"SMS return: "+result);
 			//need raise exception here
+			String msg="SMS send error!";
+			if(result!=null) msg=msg+" result="+result;
+			SMSException smse=new SMSException(msg);
+			throw smse;
 		}
 	}
 }

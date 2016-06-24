@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ecweb.ecoupon.util.PassWDGenerate;
+import ecweb.ecoupon.util.SMSException;
 import ecweb.ecoupon.util.ShortMessage;
 
 @Controller
@@ -56,7 +57,16 @@ public class RegisterController {
 		
 		//send SMS
 		String ms="喜购云店测试电子劵6位数字手机验证码："+passwd;
-		sms.sendSMS(myform.getCell(), ms);
+		try {
+			sms.sendSMS(myform.getCell(), ms);
+		} catch (SMSException e) {
+			// TODO Auto-generated catch block
+			//send SMS message failed, just log the info, and directory page to error page
+			e.printStackTrace();
+			logger.info(e.getMessage());
+			mv.setViewName("error");
+			return mv;
+		}
 		
 		mv.addObject("registerForm", myform);
 		mv.addObject("ShortMessage", sm);
