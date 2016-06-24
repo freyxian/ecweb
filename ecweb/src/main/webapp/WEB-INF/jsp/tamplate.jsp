@@ -15,8 +15,7 @@ header {border-style:solid;
 	border-width:3px;
 	border-color:Orange;
 	color: ff5733;
-	text-align:center;
-	width:710px;
+	width:610px;
 	}
 footer {
 display: block;

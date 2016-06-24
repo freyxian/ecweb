@@ -48,7 +48,17 @@ public class RegisterController {
 	public ModelAndView processSendSMS(@ModelAttribute("registerForm") RegisterForm myform,
 			HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+		String message;
 
+		//check if cell is empty
+		if((myform.getCell()==null)||(myform.getCell().length()!=11)){
+			message="请输入11位手机号码，以接收短信。";
+			mv.addObject("message",message);
+			mv.setViewName("ecard_register");
+			mv.addObject("registerForm", myform);
+			return mv;
+		}
+		
 		String passwd=PassWDGenerate.passwdGenerate();
 		ShortMessage sm = new ShortMessage();
 		sm.setMessage(passwd);
@@ -71,7 +81,7 @@ public class RegisterController {
 		mv.addObject("registerForm", myform);
 		mv.addObject("ShortMessage", sm);
 
-		String message="请在3分钟内输入通过手机短信收到的6位数字验证码；同时此验证码将成为转让或购物密码，请妥善保存。";
+		message="请在3分钟内输入通过手机短信收到的6位数字验证码；同时此验证码将成为转让或购物密码，请妥善保存。";
 		mv.addObject("message",message);
 		//return "order_input";
 		mv.setViewName("ecard_register");
