@@ -29,8 +29,8 @@
 <td><form:errors path="address" cssClass="error"/></td></tr>
 <tr><td>收货人邮编:</td><td><form:input  path="postcode" /></td>
 <td><form:errors path="postcode" cssClass="error"/></td></tr>
-<tr><td>商品信息:</td><td><a href="<c:out value="${goodsform.goodsUrl}"/>">
-<c:out value="${goodsform.goodsDesc}"/></a></td></tr>
+<tr><td>商品信息:</td><td><a href="<c:out value="${goodsForm.goodsUrl}"/>">
+<c:out value="${goodsForm.goodsDesc}"/></a></td></tr>
 <tr><td>商品价格:</td><td><form:input readonly="true" path="number" /></td></tr>
 </table>
 <br>

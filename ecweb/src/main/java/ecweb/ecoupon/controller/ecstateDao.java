@@ -68,7 +68,7 @@ public boolean getPasswdVerify(String eccode, String passwd){
 
 public Ecoupon getECbyECCode(String code){
 	logger.debug("code="+code);
-	String sql="select id,ec_code,number,state,goods_id,goods_des,goods_url,cell,passwd,name,wechat from ecoupon where ec_code=?";
+	String sql="select id,ec_code,number,state,goods_id,goods_des,goods_url,cell,passwd,name,wechat,ProcessNumber from ecoupon where ec_code=?";
 	Ecoupon ec;
 	
 	ec = this.template.queryForObject(
@@ -91,6 +91,8 @@ public Ecoupon getECbyECCode(String code){
 	        		if(rs.wasNull()) ec.setName("");
 	        		ec.setWechat(rs.getString("wechat"));
 	        		if(rs.wasNull()) ec.setWechat("");
+	        		ec.setProcessNumber(rs.getString("ProcessNumber"));
+	        		if(rs.wasNull()) ec.setProcessNumber("");
 	                return ec;
 	            }
 	        });
