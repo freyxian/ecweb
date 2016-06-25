@@ -66,7 +66,7 @@ public class RegisterController {
 		httpSession.setAttribute("ShortMessage", sm);
 		
 		//send SMS
-		String ms="喜购云店测试电子劵6位数字手机验证码："+passwd;
+		String ms="【喜购云店】电子劵6位数字手机验证码："+passwd;
 		try {
 			sms.sendSMS(myform.getCell(), ms);
 		} catch (SMSException e) {

@@ -64,7 +64,7 @@ public class SendSMS {
 	private String Password = "password"; //在短信宝注册的密码
 	private String HttpUrl = "http://api.smsbao.com/sms";
 	
-	public static String request(String httpUrl, String httpArg) {
+	public static String request(String httpUrl, String httpArg) throws SMSException {
 		BufferedReader reader = null;
 		String result = null;
 		StringBuffer sbf = new StringBuffer();
@@ -74,6 +74,9 @@ public class SendSMS {
 			URL url = new URL(httpUrl);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
+			// give it 30 seconds to respond
+			connection.setConnectTimeout(30*1000);
+		      connection.setReadTimeout(30*1000);
 			connection.connect();
 			InputStream is = connection.getInputStream();
 			reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
@@ -89,11 +92,14 @@ public class SendSMS {
 			result = sbf.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
+			String msg="SMS send HttpURLConnection error!";
+			SMSException smse=new SMSException(msg);
+			throw smse;
 		}
 		return result;
 	}
 
-	public static String md5(String plainText) {
+	public static String md5(String plainText) throws SMSException {
 		StringBuffer buf = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
@@ -111,6 +117,9 @@ public class SendSMS {
 			}
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
+			String msg="SMS send md5 error!";
+			SMSException smse=new SMSException(msg);
+			throw smse;
 		}
 		return buf.toString();
 	}
