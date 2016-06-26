@@ -68,8 +68,12 @@ public boolean getPasswdVerify(String eccode, String passwd){
 
 public Ecoupon getECbyECCode(String code){
 	logger.debug("code="+code);
-	String sql="select id,ec_code,number,state,goods_id,goods_des,goods_url,cell,passwd,name,wechat,ProcessNumber from ecoupon where ec_code=?";
-	Ecoupon ec;
+	Ecoupon ec=null;
+	String sql="SELECT COUNT(*) FROM ecoupon WHERE ec_code =?";
+	Integer result = template.queryForObject(sql,Integer.class,code);
+	if(result!=1) return ec;
+	
+	sql="select id,ec_code,number,state,goods_id,goods_des,goods_url,cell,passwd,name,wechat,ProcessNumber from ecoupon where ec_code=?";
 	
 	ec = this.template.queryForObject(
 	        sql,
@@ -130,7 +134,7 @@ public String  saveOrder(GoodsForm form){
 	}
 	pn="D"+pn;
 	
-	sql="update ecoupon set state=1, ProcessNumber=? where ec_code=? and state=0";
+	sql="update ecoupon set state=1, edate=now(),ProcessNumber=? where ec_code=? and state=0";
 	result=this.template.update(sql,pn,form.getEccode());
 	if(result!=1) throw new RuntimeException();
 	
@@ -157,7 +161,7 @@ public String  saveCashbckOrder(CashbackForm form){
 	}
 	pn="C"+pn;
 	
-	sql="update ecoupon set state=1,ProcessNumber=? where ec_code=? and state=0";
+	sql="update ecoupon set state=1,edate=now(),ProcessNumber=? where ec_code=? and state=0";
 	result=this.template.update(sql,pn,form.getEccode());
 	logger.debug("update ecoupon set state=1; result="+result);
 	if(result!=1) throw new RuntimeException();
@@ -178,7 +182,7 @@ public String getDelieverNum(String eccode){
 
 public CashbackBean getCashback(String eccode){
 	logger.debug("code="+eccode);
-	String sql="select ec_code,name,account,number,state,ProcessNumber from ecoupon where ec_code=?";
+	String sql="select ec_code,name,account,number,state,ProcessNumber from cashback where ec_code=?";
 	CashbackBean ec;
 	
 	ec = this.template.queryForObject(
