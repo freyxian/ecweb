@@ -44,6 +44,7 @@ public class RegisterController {
 		return "ecard_register";
 	}
 	
+	//Send SMS to cell number to verify
 	@RequestMapping(method=POST, params = { "sendpwtocell" })
 	public ModelAndView processSendSMS(@ModelAttribute("registerForm") RegisterForm myform,
 			HttpServletRequest request) {
@@ -58,6 +59,25 @@ public class RegisterController {
 			mv.addObject("registerForm", myform);
 			return mv;
 		}
+		
+		//captcha checking 
+		if((myform.getCaptcha()==null)||(myform.getCaptcha().length()!=4)){
+			message="请输入4位图像验证码。";
+			mv.addObject("message",message);
+			mv.setViewName("ecard_register");
+			mv.addObject("registerForm", myform);
+			return mv;
+		}
+		
+		String captcha=(String) httpSession.getAttribute("captchaString");
+		if(!captcha.equals(myform.getCaptcha())){
+			message="输入4位图像验证码错；请重试。";
+			mv.addObject("message",message);
+			mv.setViewName("ecard_register");
+			mv.addObject("registerForm", myform);
+			return mv;
+		}
+		httpSession.removeAttribute("captchaString");
 		
 		String passwd=PassWDGenerate.passwdGenerate();
 		ShortMessage sm = new ShortMessage();
@@ -138,7 +158,15 @@ public class RegisterController {
 			return mv;
 		}
 		
-		String cell=ec.getCell();
+		if(!dao.getPasswdVerify(myform.getEccode(), myform.getOldpasswd())){
+		message="输入的购物券和密码不匹配。请重试！";
+		mv.addObject("message",message);
+		mv.setViewName("ecard_register");
+		mv.addObject("registerForm", myform);
+		return mv;
+		}
+		
+/*		String cell=ec.getCell();
 		if(cell!=null&&cell.length()>0){ //at initail state, cell is empty, so as passwd
 			logger.debug("cell="+ec.getCell());
 			if(!dao.getPasswdVerify(myform.getEccode(), myform.getOldpasswd())){
@@ -148,7 +176,7 @@ public class RegisterController {
 			mv.addObject("registerForm", myform);
 			return mv;
 			}
-		}
+		}*/
 		//save new passwd and cell number
 		int i=dao.updatePasswd(myform.getEccode(), myform.getCell(),
 				myform.getNewpasswd(),myform.getName(),myform.getWechat());
@@ -156,6 +184,8 @@ public class RegisterController {
 			mv.setViewName("error");
 			return mv;
 		}
+		
+		httpSession.removeAttribute("ShortMessage");
 		
 		message="手机号及密码更改成功。请妥善保存相关信息。";
 		mv.addObject("message",message);
@@ -232,6 +262,7 @@ public class RegisterController {
 					mv.setViewName("error");
 					return mv;
 				}
+				httpSession.removeAttribute("ShortMessage");
 				message="密码重置成功。请妥善保存相关信息。";
 				mv.addObject("message",message);
 				//return "order_input";

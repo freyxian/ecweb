@@ -17,6 +17,20 @@ public class VerifyForm {
 	@Pattern(regexp="\\d{11}",message = "手机号，11位数字")
 	private String cell;
 	
+	private String flag_cd; //flag for pickup order or cash back, default is pickup order
+	
+	public VerifyForm(){
+		flag_cd="D";
+	}
+	
+	public String getFlag_cd() {
+		return flag_cd;
+	}
+
+	public void setFlag_cd(String flag_cd) {
+		this.flag_cd = flag_cd;
+	}
+
 	public String getEccode() {
 		return eccode;
 	}
