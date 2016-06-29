@@ -81,7 +81,7 @@ public class ECVerifyController {
 
 		if(ec.getState()==0){ //购物券还没有使用
 
-				if(dao.getecstate()==1){
+				if(myform.getFlag_cd().equals("D")){
 					//商品兑换期
 					GoodsForm gf=new GoodsForm();
 					gf.setEccode(myform.getEccode());
@@ -91,7 +91,7 @@ public class ECVerifyController {
 					gf.setNumber(ec.getNumber());
 					mv.addObject("goodsForm", gf);
 					mv.setViewName("goodsorder");
-				}if(dao.getecstate()==2){
+				}if(myform.getFlag_cd().equals("C")){
 					//销劵退款期
 					CashbackForm cf=new CashbackForm();
 					cf.setEccode(ec.getEc_code());

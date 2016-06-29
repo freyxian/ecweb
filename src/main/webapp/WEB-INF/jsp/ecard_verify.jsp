@@ -24,7 +24,10 @@
 <td><form:errors path="passwd" cssClass="error"/></td></tr>
 <tr><td>手机:</td><td><form:input  path="cell" /></td>
 <td><form:errors path="cell" cssClass="error"/></td></tr>
-
+<tr>
+<td>兑换商品<form:radiobutton path="flag_cd" value="D"></form:radiobutton></td>
+<td>&#160&#160退款<form:radiobutton path="flag_cd" value="C"></form:radiobutton></td>
+</tr>
 </table>
 <br>
     <%-- input type="submit" name="verifyEcard" value="验证密码"/--%>
