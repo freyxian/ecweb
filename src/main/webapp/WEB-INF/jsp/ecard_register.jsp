@@ -38,21 +38,21 @@ function chgUrl(url){
 <form:form action="ecard_register" method="post" modelAttribute="registerForm">
 <form:errors path="*" cssClass="error" />
 <table>
-<tr><td>电子劵号码:</td><td><form:input  path="eccode" /></td>
+<tr><td style="width:50%">电子劵号码:</td><td><form:input  path="eccode" /></td>
 <td><form:errors path="eccode" cssClass="error"/></td></tr>
-<tr><td>有效密码:</td><td><form:input  path="oldpasswd" /></td>
+<tr><td style="width:50%">有效密码:</td><td><form:input  path="oldpasswd" /></td>
 <td><form:errors path="oldpasswd" cssClass="error"/></td></tr>
-<tr><td>手机:</td><td><form:input  path="cell" /></td>
+<tr><td style="width:50%">手机:</td><td><form:input  path="cell" /></td>
 <td><form:errors path="cell" cssClass="error"/></td></tr>
-<tr><td>姓名:</td><td><form:input  path="name" /></td>
+<tr><td style="width:50%">姓名:</td><td><form:input  path="name" /></td>
 <td><form:errors path="name" cssClass="error"/></td></tr>
 
-<tr><td>微信号:</td><td><form:input  path="wechat" /></td>
+<tr><td style="width:50%">微信号:</td><td><form:input  path="wechat" /></td>
 <td><form:errors path="wechat" cssClass="error"/></td></tr>
-<tr><td>手机短信接收密码:</td><td><form:input  path="newpasswd" /></td>
+<tr><td style="width:50%">手机短信接收密码:</td><td><form:input  path="newpasswd" /></td>
 <td><form:errors path="newpasswd" cssClass="error"/></td></tr>
-<tr><td><img src="validatecode.jpg" name="validateCode" id="validateCode"> 
-<a href="javascript:changeImg();">看不清？</a>  </td>
+<tr><td style="width:50%"><img src="validatecode.jpg" name="validateCode" id="validateCode"> 
+<a href="javascript:changeImg();">换一个</a>  </td>
 <td><form:input  path="captcha" /></td>
 </tr>
 </table>

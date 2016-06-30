@@ -59,8 +59,10 @@ public Ecoupon getECbyCode(String code){
 }
 
 public boolean getPasswdVerify(String eccode, String passwd){
+	//logger.debug("eccode="+eccode+"; passwd=passwd");
 	String sql="SELECT COUNT(*) FROM ecoupon WHERE ec_code =? and passwd = SHA(?)";
 	Integer result = template.queryForObject(sql,Integer.class,eccode,passwd);
+	logger.debug("getPasswdVerify result="+result);
 	if (result>0) return true;
 	else return false;
 
