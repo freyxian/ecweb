@@ -15,17 +15,28 @@ header {border-style:solid;
 	border-width:3px;
 	border-color:Orange;
 	color: ff5733;
-	width:610px;
+	width:100%;
+	text-align:center;
 	}
 footer {
 display: block;
 	font-weight:bold;
 	color:blue
 	text-align:center;
-		width:710px;
+		width:100%;
 }
 .error{
 color: red;
+}
+table {
+    width: 80%;
+}
+input[type="text"] {
+    width: 80%;
+}
+input:read-only {
+    color: grey;
+    font-style: italic;
 }
 </style>
   </head>

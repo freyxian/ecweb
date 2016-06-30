@@ -10,7 +10,7 @@
 <html><head><meta charset="utf-8" />
 </head>
 <body>
-<H2>电子券购物：</H2>
+<H2>电子券退款：</H2>
 
  
 <form:form action="ec_cashback" method="post" modelAttribute="cashForm">
