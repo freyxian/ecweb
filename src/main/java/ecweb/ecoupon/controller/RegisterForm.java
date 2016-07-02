@@ -10,7 +10,8 @@ public class RegisterForm {
 	private String eccode;
 	
 	@NotNull
-	@Pattern(regexp="^(|[0-9]{6})$",message = "密码，6个数字。")
+	//@Pattern(regexp="^(|[0-9]{6})$",message = "密码，6个数字。")  //can be empty
+	@Pattern(regexp="\\d{6}",message = "密码，6个数字。")
 	private String oldpasswd;
 	
 	@NotNull 
