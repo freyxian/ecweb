@@ -135,15 +135,18 @@ public String  saveOrder(GoodsForm form){
 		for(int j=0;j<i;j++) pn="0"+pn;
 	}
 	pn="D"+pn;
+	logger.debug("SQL="+sql);
 	
 	sql="update ecoupon set state=1, edate=now(),ProcessNumber=? where ec_code=? and state=0";
 	result=this.template.update(sql,pn,form.getEccode());
 	if(result!=1) throw new RuntimeException();
+	logger.debug("SQL="+sql);
 	
 	sql="insert into orders(ec_code,name,address,postcode,ProcessNumber,state,contact) values(?,?,?,?,?,?,?)";
 	result=this.template.update(sql,form.getEccode(),form.getName(),form.getAddress(),form.getPostcode(),
 			pn,0,form.getContact());
 	if(result!=1) throw new RuntimeException();
+	logger.debug("SQL="+sql);
 	
 	return pn;
 }
@@ -168,8 +171,14 @@ public String  saveCashbckOrder(CashbackForm form){
 	logger.debug("update ecoupon set state=1; result="+result);
 	if(result!=1) throw new RuntimeException();
 	
-	sql="insert into cashback(ec_code,name,account,number,ProcessNumber,state) values(?,?,?,?,?,?)";
-	result=this.template.update(sql,form.getEccode(),form.getName(),form.getAccount(),form.getCashback(),pn,0);
+	if(form.getAccountType().equals("bank")){
+		sql="insert into cashback(ec_code,name,accountType,account,number,ProcessNumber,state) values(?,?,?,?,?,?,?)";
+		result=this.template.update(sql,form.getEccode(),form.getName(),form.getAccountType(),form.getAccount(),form.getCashback(),pn,0);
+	}else{
+		sql="insert into cashback(ec_code,name,accountType,number,ProcessNumber,state) values(?,?,?,?,?,?)";
+		result=this.template.update(sql,form.getEccode(),form.getName(),form.getAccountType(),form.getCashback(),pn,0);
+
+	}
 	if(result!=1) throw new RuntimeException();
 	
 	return pn;

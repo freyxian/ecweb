@@ -6,24 +6,28 @@ import javax.validation.constraints.Size;
 public class CashbackForm {
 	private String eccode;
 	private String cell; 
-	public String getCell() {
-		return cell;
-	}
-	public void setCell(String cell) {
-		this.cell = cell;
-	}
+	private String accountType;
+
 	private String goodsDesc;
 	private String goodsUrl;
 	private double number;
 	private double cashback;
+	private boolean police;
+	
+	public boolean isPolice() {
+		return police;
+	}
+	public void setPolice(boolean police) {
+		this.police = police;
+	}
 	public double getCashback() {
 		return cashback;
 	}
 	public void setCashback(double cashback) {
 		this.cashback = cashback;
 	}
-	@NotNull 
-	@Size(min = 2,max=50, message = " 账号，至少2个字符")
+//	@NotNull 
+//	@Size(min = 2,max=50, message = " 账号，至少2个字符")
 	private String account;
 	@NotNull 
 	@Size(min = 2,max=50, message = "姓名，至少2个字符")
@@ -66,4 +70,16 @@ public class CashbackForm {
 		this.name = name;
 	}
 	
+	public String getAccountType() {
+		return accountType;
+	}
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+	public String getCell() {
+		return cell;
+	}
+	public void setCell(String cell) {
+		this.cell = cell;
+	}
 }

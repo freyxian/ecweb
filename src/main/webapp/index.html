@@ -8,44 +8,83 @@
   
   <script>
   $(document).ready(function(){
-	  var checck=(navigator.userAgent||navigator.vendor||window.opera);
-	  
-	  if( ~checck.indexOf("MicroMessenger") ) {
-		  	  alert('系统检查到您正使用微信预览方式打开应用页面，部分功能将会无法实现。请根据电子劵使用说明，重新用其他浏览器打开应用页面。')
-		  	}
+	  var check=(navigator.userAgent||navigator.vendor||window.opera);
+	  //check="testMicroMessenger";
+	  if( ~check.indexOf("MicroMessenger") ) {
+		  	  //alert('系统检查到您正使用微信预览方式打开应用页面，部分功能将会无法实现。请根据电子劵使用说明，重新用其他浏览器打开应用页面。');
+		  //document.getElementById("guid").style.visibility = "visible";
+		  $("div.guid").show();
+		  $("div.indexbody").hide();
+		  $("div.page-header").hide();
+		  //window.location.href = "guid.html"
+	  }
 	
   });
   </script>
   <style>
-body { background-color:#eeeeee;}
+body { background-image: url("pics/phone.jpg");
+
+    	background-position: left top;
+		background-color:#eeeeee;
+	}
 header {border-style:solid;
 	border-width:3px;
 	border-color:Orange;
 	color: ff5733;
-text-align:center;
+	text-align:center;
 	width:100%;
+	font-weight: bold;
 	}
 footer {font-size:.1.1em;
 	font-weight:bold;
 	color:blue
 }
+div.guid {
+    width: 90%;
+    margin: auto;
+}
 </style>
 </head>
 <body>
+
  <header >
    <div class="page-header">
-        <h3>裕达月饼，喜购云特售</h3>
+        <h2>Suntech-喜购云店<br> 电子券应用管理系统</h2><br>
+        <h4>2016年裕达月饼兑换活动</h4>
     </div></header>
     
  <div class="container">
+ 
+ <div class="guid" style="display:none;">
+<p><h4>您在用微信预览方式打开应用，部分功能将会无法实现。
+请根据电子劵使用说明，参考以下图示打开应用页面。</h4>
+
+<img src="pics/mmexport1467776244288.jpg" class="img-responsive" id="guidimg">
+</div>
+
+ <div class="indexbody">
 <h2>喜购云</h2>
-<h4>温馨提示：请准备好手机，以便系统认证。如有任何问题，请咨询客服800-800-800，或登录www.xmcgo.com查询详情。<br>
+<h4>温馨提示：请准备好手机，以便系统认证。如有任何问题，请咨询客服800-800-800，或登录www.xmcgo.com查询详情。</h4><br>
 
 
-   <a href="ec_input/ecard_register" class="btn btn-primary" role="button">注册，转让，改密码</a>
-   <a href="ec_input/ecard_verify" class="btn btn-primary" role="button">兑换，查询，退款</a>
-<br>
-<a href="http://www.xmcgo.com" class="btn btn-info pull-center" >返回喜购云</a>
+   <a href="ec_input/ecard_register" class="btn btn-primary" role="button">加密/重置</a>
+   <a href="ec_input/ecard_verify" class="btn btn-primary" role="button">提货/退款</a>
+      <a href="ec_input/ecard_verify" class="btn btn-primary" role="button">查询</a>
+
+<a href="http://www.xmcgo.com" class="btn btn-info pull-center" >购买中秋礼品</a>
+</div>
+<h3>操作须知</h3>
+<h4>1.	关于转赠：直接把电子券+密码，通过微信/qq，直接发给对方就可以了<br>
+2.	关于密码：初始密码是3位英文字母；为安全起见，建议“加密”，再转让。<br>
+3.	用初始密码，不能执行提货/退货。请先改密码<br>
+4.	您手机收到的6位数字，即为新的有效密码，请妥善保管<br>
+<br><br><br><br>
+请关注微信公众号：XM-CGO（logo）后台留言即可得到回复<br>
+咨询客服400 631 3688  <br><br>
+生产商：广东裕达饼业有限公司<br><br>
+技术支持：佛山喜购云店   科技版挂牌代码：230057
+
+</h4>
    </div>
 </body>
 </html>

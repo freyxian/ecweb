@@ -101,8 +101,8 @@ public class ECVerifyController {
 					cf.setNumber(ec.getNumber());
 					double cb=dao.getecRate()*ec.getNumber();
 					cf.setCashback(cb);
-					mv.addObject("cashForm", cf);
-					mv.setViewName("cashback");
+					mv.addObject("cashbackForm", cf);
+					mv.setViewName("ec_cashback");
 				}
 
 

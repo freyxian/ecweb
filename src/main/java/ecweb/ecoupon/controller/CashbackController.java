@@ -4,6 +4,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -23,22 +24,35 @@ public class CashbackController {
     private ecstateDao dao;
     
 	@RequestMapping(method=POST, params = { "cashback" })
-	public ModelAndView processCashback(Map<String, Object> model,@Valid CashbackForm myform,Errors errors) {
+	public ModelAndView processCashback(Map<String, Object> model,@Valid CashbackForm myform,Errors errors,
+			HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
 		if(errors.hasErrors())
 		 {
 			logger.debug("Errors: "+errors.toString());
-			model.put("cashForm",myform);
-		 	 return new ModelAndView("cashback");
+			mv.addObject("cashbackForm", myform);
+			mv.setViewName("ec_cashback");
+		 	return mv;
 		 }
-		logger.debug("received myform is: "+myform.toString());
+		logger.debug("received AccountType="+myform.getAccountType()+" Account="+myform.getAccount());
 		
 		//verify info again will be better
-
+		StringBuffer err=new StringBuffer();
+		if (myform.getAccountType().trim()==null) err.append("必须选择收款人账号：微信，支付宝， 或银行账号。");
+		if  ((myform.getAccountType().equals("bank"))&&(myform.getAccount()==null||myform.getAccount().length()==0))
+			err.append("若选择银行账号，须同时输入开户行信息。");
+		if (!myform.isPolice()) err.append("必须选择同意退款政策才能退款。请点击链接‘我同意退款政策’查看完整的退款政策。");
+		if(err.length()>1){
+			
+			mv.addObject("message",err.toString());
+			mv.addObject("cashbackForm", myform);
+			mv.setViewName("ec_cashback");
+		 	return mv;
+		}
 		
 		//修改电子劵状态，写入购物信息
 		String PN=dao.saveCashbckOrder(myform);
 		String message="退款要求已经发出，处理单编号："+PN+"。请允许我们在24小时内完成处理。";
-		ModelAndView mv=new ModelAndView();
 		mv.addObject("message",message);
 		mv.setViewName("orderconfirmrf");
 		//return "order_input";
