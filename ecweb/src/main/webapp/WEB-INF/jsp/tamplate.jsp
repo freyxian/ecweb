@@ -12,8 +12,13 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
   <script src="../js/jquery.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../js/jquery.leanModal.min.js"></script>
 <style>
-body { background-color:#eeeeee;}
+body { background-image: url("../pics/phone.jpg");
+
+    	background-position: left top;
+		background-color:#eeeeee;
+	}
 header {border-style:solid;
 	border-width:3px;
 	border-color:Orange;
@@ -33,23 +38,53 @@ color: red;
 }
 table {
     width: 80%;
+    table-layout: fixed;
 }
-input[type="text"] {
-    width: 80%;
+input:-moz-read-only { /* For Firefox */
+    color: grey;
+    font-style: italic;
 }
+
 input:read-only {
     color: grey;
     font-style: italic;
 }
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+#modal {
+  width: 300px;
+  padding: 15px 20px;
+  background: #f3f6fa;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
 </style>
+<script type="text/javascript">
+$(document).ready(function(){
+	   $("#show_popup").leanModal({ top : 200, overlay : 0.4, closeButton: ".modal_close" });
+});
+ </script>
   </head>
   
   <body>
      
   <div class="container">
-  <header>
+ <header >
    <div class="page-header">
-        <h3>裕达月饼，喜购云特售</h3>
+        <h2>Suntech-喜购云店<br> 电子券应用管理系统</h2><br>
+        <h4>2016年裕达月饼兑换活动</h4>
     </div></header>
     
     <sitemesh:write property='body'/>
