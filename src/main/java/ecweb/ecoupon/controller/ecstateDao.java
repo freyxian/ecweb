@@ -134,7 +134,7 @@ public String  saveOrder(GoodsForm form){
 		int i = 6-pn.length();
 		for(int j=0;j<i;j++) pn="0"+pn;
 	}
-	pn="D"+pn;
+	pn="ZY"+pn;
 	logger.debug("SQL="+sql);
 	
 	sql="update ecoupon set state=1, edate=now(),ProcessNumber=? where ec_code=? and state=0";
@@ -164,21 +164,16 @@ public String  saveCashbckOrder(CashbackForm form){
 		int i = 6-pn.length();
 		for(int j=0;j<i;j++) pn="0"+pn;
 	}
-	pn="C"+pn;
+	pn="ZZ"+pn;
 	
 	sql="update ecoupon set state=1,edate=now(),ProcessNumber=? where ec_code=? and state=0";
 	result=this.template.update(sql,pn,form.getEccode());
 	logger.debug("update ecoupon set state=1; result="+result);
 	if(result!=1) throw new RuntimeException();
 	
-	if(form.getAccountType().equals("bank")){
-		sql="insert into cashback(ec_code,name,accountType,account,number,ProcessNumber,state) values(?,?,?,?,?,?,?)";
-		result=this.template.update(sql,form.getEccode(),form.getName(),form.getAccountType(),form.getAccount(),form.getCashback(),pn,0);
-	}else{
-		sql="insert into cashback(ec_code,name,accountType,number,ProcessNumber,state) values(?,?,?,?,?,?)";
-		result=this.template.update(sql,form.getEccode(),form.getName(),form.getAccountType(),form.getCashback(),pn,0);
+	sql="insert into cashback(ec_code,name,accountType,account,number,ProcessNumber,state,cell) values(?,?,?,?,?,?,?,?)";
+	result=this.template.update(sql,form.getEccode(),form.getName(),form.getAccountType(),form.getAccount(),form.getCashback(),pn,0,form.getContactNum());
 
-	}
 	if(result!=1) throw new RuntimeException();
 	
 	return pn;
@@ -193,7 +188,7 @@ public String getDelieverNum(String eccode){
 
 public CashbackBean getCashback(String eccode){
 	logger.debug("code="+eccode);
-	String sql="select ec_code,name,account,number,state,ProcessNumber from cashback where ec_code=?";
+	String sql="select ec_code,name,accountType,account,number,state,ProcessNumber from cashback where ec_code=?";
 	CashbackBean ec;
 	
 	ec = this.template.queryForObject(
@@ -203,6 +198,7 @@ public CashbackBean getCashback(String eccode){
 	            public CashbackBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 	            	CashbackBean ec = new CashbackBean();
 	        		ec.setEccode(rs.getString("ec_code"));
+	        		ec.setAccountType(rs.getString("accountType"));
 	        		ec.setAccount(rs.getString("account"));
 	        		ec.setState(rs.getInt("state"));
 	        		ec.setNumber(rs.getDouble("number"));

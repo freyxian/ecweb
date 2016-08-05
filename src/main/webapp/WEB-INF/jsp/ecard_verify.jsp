@@ -10,7 +10,7 @@
 <html><head><meta charset="utf-8" />
 </head>
 <body>
-<H2>电子劵验证</H2>
+<H2>电子券提货-退款-查询</H2>
 <div class="message" style="color:#ff4500">
 <c:out value="${message}"/>
 </div>
@@ -19,11 +19,11 @@
 <form:errors path="*" cssClass="error" />
 <table>
 <tr><td>电子劵号码:</td><td><form:input  path="eccode" /></td>
-<td><form:errors path="eccode" cssClass="error"/></td></tr>
+<td class="required"><form:errors path="eccode" cssClass="error"/></td></tr>
 <tr><td>密码:</td><td><form:input  path="passwd" /></td>
-<td><form:errors path="passwd" cssClass="error"/></td></tr>
+<td class="required"><form:errors path="passwd" cssClass="error"/></td></tr>
 <tr><td>手机:</td><td><form:input  path="cell" /></td>
-<td><form:errors path="cell" cssClass="error"/></td></tr>
+<td class="required"><form:errors path="cell" cssClass="error"/></td></tr>
 <tr>
 <td>兑换<form:radiobutton path="flag_cd" value="D"></form:radiobutton></td>
 <td>&#160&#160退款<form:radiobutton path="flag_cd" value="C"></form:radiobutton></td>

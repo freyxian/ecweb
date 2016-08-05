@@ -51,7 +51,13 @@ public void setEccode(String eccode) {
 private String goodsDesc;
 private String goodsUrl;
 private double number;
-
+private String contactNum;
+public String getContactNum() {
+	return contactNum;
+}
+public void setContactNum(String contactNum) {
+	this.contactNum = contactNum;
+}
 public double getNumber() {
 	return number;
 }

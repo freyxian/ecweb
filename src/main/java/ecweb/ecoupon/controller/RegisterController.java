@@ -60,7 +60,7 @@ public class RegisterController {
 			return mv;
 		}
 		
-		//captcha checking 
+/*		//captcha checking 
 		if((myform.getCaptcha()==null)||(myform.getCaptcha().length()!=4)){
 			message="请输入4位图像验证码。";
 			mv.addObject("message",message);
@@ -78,6 +78,7 @@ public class RegisterController {
 			return mv;
 		}
 		httpSession.removeAttribute("captchaString");
+	*/
 		
 		String passwd=PassWDGenerate.passwdGenerate();
 		ShortMessage sm = new ShortMessage();

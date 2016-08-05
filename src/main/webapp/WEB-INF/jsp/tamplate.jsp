@@ -19,9 +19,7 @@ body { background-image: url("../pics/phone.jpg");
     	background-position: left top;
 		background-color:#eeeeee;
 	}
-header {border-style:solid;
-	border-width:3px;
-	border-color:Orange;
+header {
 	color: ff5733;
 	width:100%;
 	text-align:center;
@@ -38,7 +36,7 @@ color: red;
 }
 table {
     width: 80%;
-    table-layout: fixed;
+  /*  table-layout: fixed;*/
 }
 input:-moz-read-only { /* For Firefox */
     color: grey;
@@ -70,6 +68,9 @@ input:read-only {
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
+.required:after { content:" *"; 
+color:red;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -82,16 +83,17 @@ $(document).ready(function(){
      
   <div class="container">
  <header >
-   <div class="page-header">
-        <h2>Suntech-喜购云店<br> 电子券应用管理系统</h2><br>
-        <h4>2016年裕达月饼兑换活动</h4>
+    <div class="page-header">
+        <h2>Suntech-喜购云店<br> 电子券应用管理系统</h2><br><br><br>
+        <h4 style="color:yellow;">2016年裕达月饼兑换活动</h4>
     </div></header>
     
     <sitemesh:write property='body'/>
     
      <footer>
      <br>
-           <a href="http://www.xmcgo.com" class="btn btn-info" >返回喜购云</a>
+           <a href="http://www.xmcgo.com" class="btn btn-info" >进入喜购云</a>
+           <a href="../index.html" class="btn btn-info" >返回兑换主页</a>
     </footer>
     </div>
        

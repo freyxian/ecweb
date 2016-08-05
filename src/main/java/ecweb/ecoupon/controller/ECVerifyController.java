@@ -107,14 +107,14 @@ public class ECVerifyController {
 
 
 		}else if(ec.getState()==1){//已经使用，仅显示状态
-			message="此购物券相关订单尚在处理中,处理单编号："+ec.getProcessNumber()+"，请等待24小时后查询！"; //加ProcessNumber
+			message="此购物券相关订单尚在处理中,处理单编号："+ec.getProcessNumber()+"，请2工作日后查询！"; //加ProcessNumber
 			mv.addObject("message",message);
 			mv.setViewName("orderconfirmrf");
 		}else if(ec.getState()==2){
-			if(ec.getProcessNumber().charAt(0)=='D'){
+			if(ec.getProcessNumber().charAt(1)=='Y'){
 				message="此购物券相关订单已经处理完毕，快递单为："+dao.getDelieverNum(ec.getEc_code())
 				+"。请向快递公司查询，或联系喜购云客服。";
-			}else if(ec.getProcessNumber().charAt(0)=='C'){
+			}else if(ec.getProcessNumber().charAt(1)=='Z'){
 				message="此购物券已完成退款，退款账号为："+dao.getCashback(ec.getEc_code()).getAccount()
 				+"。请查询你的账号，或联系喜购云客服。";
 			}
