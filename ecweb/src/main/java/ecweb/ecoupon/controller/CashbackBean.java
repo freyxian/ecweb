@@ -3,11 +3,18 @@ package ecweb.ecoupon.controller;
 public class CashbackBean {
 	String eccode;
 	String name;
+	String accountType;
 	String account;
 	double number;
 	String ProcessNumber;
 	int state;
 	
+	public String getAccountType() {
+		return accountType;
+	}
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
 	public String getEccode() {
 		return eccode;
 	}

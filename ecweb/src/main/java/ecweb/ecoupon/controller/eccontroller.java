@@ -76,7 +76,7 @@ public class eccontroller {
 		
 		//修改电子劵状态，写入购物信息
 		String PN=dao.saveOrder(myform);
-		String message="购物订单已经发出，处理单编号："+PN+"。请允许我们在24小时内完成处理。";
+		String message="购物订单已经发出，处理单编号："+PN+"。请允许我们在2工作日内完成处理。";
 		ModelAndView mv=new ModelAndView();
 		mv.addObject("message",message);
 		mv.setViewName("orderconfirmrf");

@@ -39,7 +39,7 @@ public class CashbackController {
 		//verify info again will be better
 		StringBuffer err=new StringBuffer();
 		if (myform.getAccountType().trim()==null) err.append("必须选择收款人账号：微信，支付宝， 或银行账号。");
-		if  ((myform.getAccountType().equals("bank"))&&(myform.getAccount()==null||myform.getAccount().length()==0))
+		if  ((myform.getAccount()==null||myform.getAccount().length()==0))
 			err.append("若选择银行账号，须同时输入开户行信息。");
 		if (!myform.isPolice()) err.append("必须选择同意退款政策才能退款。请点击链接‘我同意退款政策’查看完整的退款政策。");
 		if(err.length()>1){
@@ -52,9 +52,9 @@ public class CashbackController {
 		
 		//修改电子劵状态，写入购物信息
 		String PN=dao.saveCashbckOrder(myform);
-		String message="退款要求已经发出，处理单编号："+PN+"。请允许我们在24小时内完成处理。";
-		mv.addObject("message",message);
-		mv.setViewName("orderconfirmrf");
+
+		mv.addObject("message",PN);
+		mv.setViewName("cashbackconfirm");
 		//return "order_input";
 		return mv;
 	}

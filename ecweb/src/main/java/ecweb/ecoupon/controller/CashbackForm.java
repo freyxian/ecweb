@@ -13,7 +13,15 @@ public class CashbackForm {
 	private double number;
 	private double cashback;
 	private boolean police;
-	
+	@NotNull 
+	@Size(min = 2,max=50, message = " 账号，至少2个字符")
+	private String contactNum;
+	public String getContactNum() {
+		return contactNum;
+	}
+	public void setContactNum(String contactNum) {
+		this.contactNum = contactNum;
+	}
 	public boolean isPolice() {
 		return police;
 	}
@@ -26,8 +34,8 @@ public class CashbackForm {
 	public void setCashback(double cashback) {
 		this.cashback = cashback;
 	}
-//	@NotNull 
-//	@Size(min = 2,max=50, message = " 账号，至少2个字符")
+	@NotNull 
+	@Size(min = 2,max=50, message = " 账号，至少2个字符")
 	private String account;
 	@NotNull 
 	@Size(min = 2,max=50, message = "姓名，至少2个字符")
